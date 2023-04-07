@@ -12,6 +12,8 @@ router = routers.DefaultRouter()
 router.register(r'drugs', all_views.DrugsViewSet)
 router.register(r'order', all_views.OrderViewSet)
 router.register(r'user', all_views.UserViewSet)
+router.register(r'category', all_views.CategoryViewSet)
+router.register(r'ord_provider', all_views.OrderOfProviderViewSet)
 
 
 
