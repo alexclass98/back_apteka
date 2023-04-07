@@ -43,6 +43,15 @@ class OrderSerializer(serializers.ModelSerializer):
         # Поля, которые мы сериализуем
         fields = ["pk",  "product", "auth_user", "quantity", "price", "address", "status", "number_of_order", "date_of_delivery"]
 
+class OrderFilter(filters.FilterSet):
+    pass
+    search = filters.NumberFilter(field_name='product')
+    search = filters.NumberFilter(field_name='number_of_order')
+    class Meta:
+        model = Order
+        fields = ["product", "number_of_order"]
+
+
 class OrderOfProviderSerializer(serializers.ModelSerializer):
     class Meta:
         # Модель, которую мы сериализуем
