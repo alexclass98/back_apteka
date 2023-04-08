@@ -42,7 +42,7 @@ class OrderViewSet(viewsets.ModelViewSet):
     serializer_class = OrderSerializer
     filter_backends = (DjangoFilterBackend,)
     filterset_class = OrderFilter
-    search_fields = ['^product', 'number_of_order']
+    search_fields = ['^product', '^number_of_order', 'auth_user']
     # permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
 

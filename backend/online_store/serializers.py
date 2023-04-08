@@ -47,9 +47,10 @@ class OrderFilter(filters.FilterSet):
     pass
     search = filters.NumberFilter(field_name='product')
     search = filters.NumberFilter(field_name='number_of_order')
+    search = filters.NumberFilter(field_name='auth_user')
     class Meta:
         model = Order
-        fields = ["product", "number_of_order"]
+        fields = ["product", "number_of_order", "auth_user"]
 
 
 class OrderOfProviderSerializer(serializers.ModelSerializer):
