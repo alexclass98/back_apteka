@@ -2,14 +2,6 @@ from django.db import models
 
 #Описание всех таблиц
 
-class Category(models.Model):
-    id = models.IntegerField(primary_key=True)
-    category_name = models.CharField(max_length=45)
-
-    class Meta:
-        managed = True
-        db_table = 'category'
-
 
 
 class Drugs(models.Model):
@@ -17,13 +9,13 @@ class Drugs(models.Model):
     description = models.CharField(max_length=255)
     price = models.IntegerField()
     amount = models.IntegerField(blank=True, null=True)
-    category = models.ForeignKey(Category, models.DO_NOTHING, db_column='category', blank=True, null=True)
+    category = models.CharField(max_length=100, blank=True, null=True)
     active_substance = models.CharField(max_length=45, blank=True, null=True)
     for_children = models.IntegerField(blank=True, null=True)
     img = models.CharField(max_length=255, blank=True, null=True)
 
     class Meta:
-        managed = True
+        managed = False
         db_table = 'drugs'
 
 
@@ -57,9 +49,11 @@ class Order(models.Model):
     status = models.CharField(max_length=255)
     number_of_order = models.CharField(max_length=45)
     date_of_delivery = models.DateField()
+    date_made = models.DateField()
+    delivery_mode = models.CharField(max_length=45)
 
     class Meta:
-        managed = True
+        managed = False
         db_table = 'order'
 
 
@@ -70,11 +64,13 @@ class OrderOfProvider(models.Model):
     product = models.ForeignKey(Drugs, models.DO_NOTHING, db_column='product')
     price = models.IntegerField()
     quantity = models.IntegerField()
-    status = models.CharField(max_length=255, blank=True, null=True)
-    address = models.CharField(max_length=255, blank=True, null=True)
-    date_of_delivery = models.DateField(blank=True, null=True)
+    status = models.CharField(max_length=255)
+    address = models.CharField(max_length=255)
+    date_of_delivery = models.DateField()
+    date_made = models.DateField()
+    delivery_mode = models.CharField(max_length=45)
 
     class Meta:
-        managed = True
+        managed = False
         db_table = 'order_of_provider'
 

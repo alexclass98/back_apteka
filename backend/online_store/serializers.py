@@ -1,13 +1,7 @@
-from .models import Drugs, Order, AuthUser, OrderOfProvider, Category
+from .models import Drugs, Order, AuthUser, OrderOfProvider
 from rest_framework import serializers
 from django_filters import rest_framework as filters
 
-class CategorySerializer(serializers.ModelSerializer):
-    class Meta:
-        # Модель, которую мы сериализуем
-        model = Category
-        # Поля, которые мы сериализуем
-        fields = ["pk",  "category_name"]
 
 
 
@@ -41,7 +35,7 @@ class OrderSerializer(serializers.ModelSerializer):
         # Модель, которую мы сериализуем
         model = Order
         # Поля, которые мы сериализуем
-        fields = ["pk",  "product", "auth_user", "quantity", "price", "address", "status", "number_of_order", "date_of_delivery"]
+        fields = ["pk",  "product", "auth_user", "quantity", "price", "address", "status", "number_of_order", "date_of_delivery", "date_made", "delivery_mode"]
 
 class OrderFilter(filters.FilterSet):
     pass
@@ -58,7 +52,7 @@ class OrderOfProviderSerializer(serializers.ModelSerializer):
         # Модель, которую мы сериализуем
         model = OrderOfProvider
         # Поля, которые мы сериализуем
-        fields = ["pk", "number_of_order", "provider", "product", "price", "quantity", "status", "address",  "date_of_delivery"]
+        fields = ["pk", "number_of_order", "provider", "product", "price", "quantity", "status", "address",  "date_of_delivery", "date_made", "delivery_mode"]
 
 
 class UserSerializer(serializers.ModelSerializer):
