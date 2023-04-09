@@ -29,6 +29,7 @@ class AuthUser(models.Model):
     first_name = models.CharField(max_length=150)
     last_name = models.CharField(max_length=150)
     email = models.CharField(max_length=254)
+    address = models.CharField(max_length=254)
     is_staff = models.IntegerField()
     is_active = models.IntegerField()
     date_joined = models.DateTimeField()
@@ -51,6 +52,7 @@ class Order(models.Model):
     date_of_delivery = models.DateField()
     date_made = models.DateField()
     delivery_mode = models.CharField(max_length=45)
+    provisor_id = models.IntegerField()
 
     class Meta:
         managed = True

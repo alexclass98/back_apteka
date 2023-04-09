@@ -36,16 +36,18 @@ class OrderSerializer(serializers.ModelSerializer):
         # Модель, которую мы сериализуем
         model = Order
         # Поля, которые мы сериализуем
-        fields = ["pk",  "product", "auth_user", "quantity", "price", "address", "status", "number_of_order", "date_of_delivery", "date_made", "delivery_mode"]
+        fields = ["pk",  "product", "auth_user", "quantity", "price", "address", "status", "number_of_order", "date_of_delivery", "date_made", "delivery_mode", "provisor_id"]
 
 class OrderFilter(filters.FilterSet):
     pass
     search = filters.NumberFilter(field_name='product')
     search = filters.NumberFilter(field_name='number_of_order')
     search = filters.NumberFilter(field_name='auth_user')
+    search = filters.NumberFilter(field_name='provisor_id')
+
     class Meta:
         model = Order
-        fields = ["product", "number_of_order", "auth_user"]
+        fields = ["product", "number_of_order", "auth_user", "provisor_id"]
 
 
 class OrderOfProviderSerializer(serializers.ModelSerializer):
@@ -61,7 +63,7 @@ class UserSerializer(serializers.ModelSerializer):
         # Модель, которую мы сериализуем
         model = AuthUser
         # Поля, которые мы сериализуем
-        fields = ["pk",  "password", "last_login", "is_superuser", "username", "first_name", "last_name", "email", "is_staff", "is_active", "date_joined", "tel", "balance"]
+        fields = ["pk",  "password", "last_login", "is_superuser", "username", "first_name", "last_name", "email", "is_staff", "is_active", "date_joined", "tel", "balance",'address']
 
 
 class ProvisorsSerializer(serializers.ModelSerializer):
