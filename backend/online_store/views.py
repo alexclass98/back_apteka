@@ -1,7 +1,7 @@
 from rest_framework import viewsets
 from .serializers import DrugsSerializer, DrugsFilter, OrderSerializer, UserSerializer, \
-    OrderOfProviderSerializer, OrderFilter
-from .models import Drugs, Order, AuthUser, OrderOfProvider
+    OrderOfProviderSerializer, OrderFilter, ProvisorsSerializer
+from .models import Drugs, Order, AuthUser, OrderOfProvider, Provisors
 from django_filters.rest_framework import DjangoFilterBackend
 from django.conf import settings
 from rest_framework import permissions
@@ -13,7 +13,7 @@ class DrugsViewSet(viewsets.ModelViewSet):
     serializer_class = DrugsSerializer
     filter_backends = (DjangoFilterBackend,)
     filterset_class = DrugsFilter
-    search_fields = [ '^name']
+    search_fields = ['^name', '^category']
     # Сериализатор для модели
 
 
@@ -42,3 +42,10 @@ class UserViewSet(viewsets.ModelViewSet):
     # queryset всех пользователей для фильтрации по дате последнего изменения
     queryset = AuthUser.objects.all()
     serializer_class = UserSerializer
+
+
+class ProvisorsViewSet(viewsets.ModelViewSet):
+    # Описание класса пользователей, добавляем тут сериалайзер и поля для фильтрации
+    # queryset всех пользователей для фильтрации по дате последнего изменения
+    queryset = Provisors.objects.all()
+    serializer_class = ProvisorsSerializer

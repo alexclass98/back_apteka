@@ -15,7 +15,7 @@ class Drugs(models.Model):
     img = models.CharField(max_length=255, blank=True, null=True)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'drugs'
 
 
@@ -53,7 +53,7 @@ class Order(models.Model):
     delivery_mode = models.CharField(max_length=45)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'order'
 
 
@@ -71,6 +71,19 @@ class OrderOfProvider(models.Model):
     delivery_mode = models.CharField(max_length=45)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'order_of_provider'
+
+
+class Provisors(models.Model):
+    id = models.IntegerField(primary_key=True)
+    provisor = models.ForeignKey(AuthUser, models.DO_NOTHING, db_column='provisor')
+    address = models.CharField(max_length=255)
+    contact_tel = models.CharField(max_length=45)
+    img = models.CharField(max_length=255)
+
+    class Meta:
+        managed = True
+        db_table = 'provisors'
+
 

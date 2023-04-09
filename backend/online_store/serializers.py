@@ -1,4 +1,4 @@
-from .models import Drugs, Order, AuthUser, OrderOfProvider
+from .models import Drugs, Order, AuthUser, OrderOfProvider, Provisors
 from rest_framework import serializers
 from django_filters import rest_framework as filters
 
@@ -23,9 +23,10 @@ class DrugsFilter(filters.FilterSet):
      max_pr = filters.NumberFilter(field_name='price', lookup_expr='lte')
      min_pr = filters.NumberFilter(field_name='price', lookup_expr='gte')
      search = filters.CharFilter(field_name='name', lookup_expr='icontains')
+     search = filters.CharFilter(field_name='category', lookup_expr='icontains')
      class Meta:
          model = Drugs
-         fields = ['price', 'name']
+         fields = ['price', 'name', 'category']
 
 
 
@@ -61,3 +62,11 @@ class UserSerializer(serializers.ModelSerializer):
         model = AuthUser
         # Поля, которые мы сериализуем
         fields = ["pk",  "password", "last_login", "is_superuser", "username", "first_name", "last_name", "email", "is_staff", "is_active", "date_joined", "tel", "balance"]
+
+
+class ProvisorsSerializer(serializers.ModelSerializer):
+    class Meta:
+        # Модель, которую мы сериализуем
+        model = Provisors
+        # Поля, которые мы сериализуем
+        fields = ["pk",  "provisor", "address", "contact_tel", "img"]
