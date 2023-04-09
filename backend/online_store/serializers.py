@@ -26,7 +26,7 @@ class DrugsFilter(filters.FilterSet):
      search = filters.CharFilter(field_name='category', lookup_expr='icontains')
      class Meta:
          model = Drugs
-         fields = ['price', 'name', 'category']
+         fields = ['price', 'name', 'category', 'active_substance']
 
 
 

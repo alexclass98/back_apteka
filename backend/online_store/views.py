@@ -13,7 +13,7 @@ class DrugsViewSet(viewsets.ModelViewSet):
     serializer_class = DrugsSerializer
     filter_backends = (DjangoFilterBackend,)
     filterset_class = DrugsFilter
-    search_fields = ['^name', '^category']
+    search_fields = ['^name', '^category', '^active_substance']
     # Сериализатор для модели
 
 
