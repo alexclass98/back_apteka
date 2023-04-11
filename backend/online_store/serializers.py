@@ -23,10 +23,10 @@ class DrugsFilter(filters.FilterSet):
      max_pr = filters.NumberFilter(field_name='price', lookup_expr='lte')
      min_pr = filters.NumberFilter(field_name='price', lookup_expr='gte')
      search = filters.CharFilter(field_name='name', lookup_expr='icontains')
-     search = filters.CharFilter(field_name='category', lookup_expr='icontains')
+
      class Meta:
          model = Drugs
-         fields = ['price', 'name', 'category', 'active_substance']
+         fields = ['price', 'name', 'active_substance', 'category']
 
 
 
@@ -56,7 +56,12 @@ class OrderOfProviderSerializer(serializers.ModelSerializer):
         model = OrderOfProvider
         # Поля, которые мы сериализуем
         fields = ["pk", "number_of_order", "provider", "product", "price", "quantity", "status", "address",  "date_of_delivery", "date_made", "delivery_mode"]
-
+class OrderOfProviderFilter(filters.FilterSet):
+    pass
+    search = filters.NumberFilter(field_name='provider')
+    class Meta:
+        model = OrderOfProvider
+        fields = ["provider"]
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -72,3 +77,5 @@ class ProvisorsSerializer(serializers.ModelSerializer):
         model = Provisors
         # Поля, которые мы сериализуем
         fields = ["pk",  "provisor", "address", "contact_tel", "img"]
+
+

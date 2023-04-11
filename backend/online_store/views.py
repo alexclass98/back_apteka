@@ -1,6 +1,6 @@
 from rest_framework import viewsets
 from .serializers import DrugsSerializer, DrugsFilter, OrderSerializer, UserSerializer, \
-    OrderOfProviderSerializer, OrderFilter, ProvisorsSerializer
+    OrderOfProviderSerializer, OrderFilter, ProvisorsSerializer, OrderOfProviderFilter
 from .models import Drugs, Order, AuthUser, OrderOfProvider, Provisors
 from django_filters.rest_framework import DjangoFilterBackend
 from django.conf import settings
@@ -22,6 +22,9 @@ class OrderOfProviderViewSet(viewsets.ModelViewSet):
     # queryset всех пользователей для фильтрации по дате последнего изменения
     queryset = OrderOfProvider.objects.all()
     serializer_class = OrderOfProviderSerializer
+    filter_backends = (DjangoFilterBackend,)
+    filterset_class = OrderOfProviderFilter
+    search_fields = ['^provider']
 
     # permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
