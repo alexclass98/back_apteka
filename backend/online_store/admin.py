@@ -1,9 +1,18 @@
 from django.contrib import admin
-# Register your models here.
-from .models import Order, Drugs, OrderOfProvider, Provisors
+from django.contrib.auth.models import User
+from django.contrib.auth.models import Group
+from rest_framework.authtoken.models import TokenProxy
 
-#Описание администратора, добавляем ему таблицы, к которым есть доступ
-admin.site.register(Drugs)
-admin.site.register(Order)
+
+# Register your models here.
+from .models import OrderOfProvider
+
+
+
+# Описание администратора, добавляем ему таблицы, к которым есть доступ
 admin.site.register(OrderOfProvider)
-admin.site.register(Provisors)
+
+admin.site.unregister(User)
+admin.site.unregister(Group)
+admin.site.unregister(TokenProxy)
+
