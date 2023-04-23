@@ -41,9 +41,10 @@ class OrderSerializer(serializers.ModelSerializer):
 class OrderFilter(filters.FilterSet):
     pass
     search = filters.NumberFilter(field_name='product')
-    search = filters.NumberFilter(field_name='number_of_order')
+
     search = filters.NumberFilter(field_name='auth_user')
     search = filters.NumberFilter(field_name='provisor_id')
+    search = filters.NumberFilter(field_name='number_of_order', lookup_expr='icontains')
 
     class Meta:
         model = Order
@@ -59,6 +60,7 @@ class OrderOfProviderSerializer(serializers.ModelSerializer):
 class OrderOfProviderFilter(filters.FilterSet):
     pass
     search = filters.NumberFilter(field_name='provider')
+
     class Meta:
         model = OrderOfProvider
         fields = ["provider"]
